@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native"
 
 const HomeView = ({navigation}) => {
   
-    const [enteredTodo, setEnteredTodo] = useState('test')
+    const [enteredTodo, setEnteredTodo] = useState('Nouvelle Tache')
 
     const changeTextHandler = (pEnteredTodo) => {
         setEnteredTodo(pEnteredTodo)
@@ -17,28 +17,28 @@ const HomeView = ({navigation}) => {
     return (
         <View style={styles.containerFlex}>
             <View style={styles.blueFlexItem}>
-                <Text>Blue</Text>
+                <Text>My Day, Besoin d'une image en fond</Text>
             </View>
             <View style={styles.greenFlexItem}>
                 <Text>{enteredTodo}</Text>
                 <TextInput
-                    placeholder='Entrer nouvelle valeur de state'
+                    placeholder='Entrer une nouvelle Tache'
                     onChangeText={changeTextHandler}
                 />
                 <Button
                     onPress={changeTodoHandler}
-                    title='Create todo' />
+                    title='Nouvelle Tache' />
             </View>
-            <View style={styles.yellowFlexItem} >
+            {/* <View style={styles.yellowFlexItem} >
             <Button
                     onPress={() => {navigation.navigate('Second')}}
-                    title='Go to second page' />
-            </View>
-
+                    title='Aller à la deuxième page' />
+            </View> */}
             <StatusBar style="auto" />
         </View>
     )
 }
+
 
 export default HomeView
 
@@ -51,10 +51,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     containerFlex: {
-      flex: 1,
+      flex: 2,
     },
     blueFlexItem: {
-      flex: 2,
+      flex: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
       backgroundColor: 'blue'
     },
     greenFlexItem: {
@@ -63,9 +65,10 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     yellowFlexItem: {
-      flex: 2,
+      flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: 'yellow',
     },
   });
   
