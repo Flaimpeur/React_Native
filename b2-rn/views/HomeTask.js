@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar"
 import { useState } from "react"
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
+import * as FileSystem from 'expo-file-system'
 
-const HomeView = ({navigation}) => {
+const HomeTask = ({navigation}) => {
   
     const [enteredTodo, setEnteredTodo] = useState('Nouvelle Tache')
 
@@ -40,7 +41,7 @@ const HomeView = ({navigation}) => {
 }
 
 
-export default HomeView
+export default HomeTask
 
 
 const styles = StyleSheet.create({
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
     },
     greenFlexItem: {
       flex: 5,
-      justifyContent: 'center',
-      alignItems: 'center'
+      justifyContent: 'flex-end',
+      alignItems: 'center',
     },
     yellowFlexItem: {
       flex: 1,

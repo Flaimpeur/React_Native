@@ -1,7 +1,6 @@
 import { View, Text } from "react-native"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function SecondView() {
+function Calendar() {
   return (
     <View>
         <Text>Welcome to the second screen</Text>
@@ -9,4 +8,4 @@ function SecondView() {
   )
 }
 
-export default SecondView
+export default Calendar
