@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import * as FileSystem from 'expo-file-system';
 import { writefile, deleteFile } from '../components/addContent/';
-// import deleteFile from '/components/addContent';
+import sendFileOnEmail from '../components/sendMail/'
 
 function Test() {
 
@@ -18,6 +18,13 @@ function Test() {
         await deleteFile('file.txt')
     }
 
+    const sendEmailTodoHandler = async () => {
+        // const fileContent = await FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'file.txt')
+        // console.log(fileContent)
+        // console.log('LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', FileSystem.documentDirectory + 'file.txt')
+        await sendFileOnEmail(FileSystem.documentDirectory + 'file.txt')
+    }
+
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <TextInput value={enteredTodo} onChangeText={(value) => {setEnteredTodo(value)}} placeholder="Saisir une nouvelle tache" />
@@ -27,6 +34,9 @@ function Test() {
             <Button
                 onPress={deleteTodoHandler}
                 title='Delete File' />
+            <Button
+                onPress={sendEmailTodoHandler}
+                title='Send the file' />
         </View>
     )
 }
