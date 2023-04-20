@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import * as FileSystem from 'expo-file-system';
 import { writefile, deleteFile } from '../components/addContent/';
-import sendFileOnEmail from '../components/sendMail/'
+import { sendFileOnEmail } from '../components/sendMail/'
 
 function Test() {
 
@@ -15,13 +15,12 @@ function Test() {
     }
 
     const deleteTodoHandler = async () => {
+        // supprimer le fichier
         await deleteFile('file.txt')
     }
 
     const sendEmailTodoHandler = async () => {
-        // const fileContent = await FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'file.txt')
-        // console.log(fileContent)
-        // console.log('LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', FileSystem.documentDirectory + 'file.txt')
+        // envoyer le fichier par mail
         await sendFileOnEmail(FileSystem.documentDirectory + 'file.txt')
     }
 
@@ -42,3 +41,4 @@ function Test() {
 }
 
 export default Test
+
