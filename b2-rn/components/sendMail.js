@@ -10,5 +10,6 @@ export const sendFileOnEmail = async (myFile) => {
 
         await MailComposer.composeAsync(options)
     } catch (error) {
+        console.log(error);
     }
 }

@@ -16,12 +16,12 @@ function Test() {
 
     const deleteTodoHandler = async () => {
         // supprimer le fichier
-        await deleteFile('file.txt')
+        await deleteFile('text.txt')
     }
 
     const sendEmailTodoHandler = async () => {
         // envoyer le fichier par mail
-        await sendFileOnEmail(FileSystem.documentDirectory + 'file.txt')
+        await sendFileOnEmail(FileSystem.documentDirectory + 'text.txt')
     }
 
     return (
@@ -41,4 +41,3 @@ function Test() {
 }
 
 export default Test
-

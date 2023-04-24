@@ -20,8 +20,8 @@ export default function App() {
           <Tab.Screen name='Accueil' component={HomeTask} options={{title: 'Accueil', tabBarIcon: ({ color, size }) => {
             return <Icon name="home" size={30} />;
           }}} />
-          <Tab.Screen name='Second' component={Calendar} options={{title: 'Calendrier', tabBarIcon: ({ color, size }) => {
-            return <Icon name="calendar" size={30} />;
+          <Tab.Screen name='Second' component={Calendar} options={{title: 'Mail', tabBarIcon: ({ color, size }) => {
+            return <Icon name="mail" size={30} />;
           }}}/>
           <Tab.Screen name='Test' component={Test} options={{title: 'Test'}} />
         </Tab.Navigator>

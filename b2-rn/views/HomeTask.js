@@ -1,40 +1,63 @@
 import { StatusBar } from "expo-status-bar"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground } from "react-native"
-import { Button, Divider } from 'react-native-paper';
-import myImage from './Image_TP.jpg'
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Button } from 'react-native-paper';
+import myImage from '../Image_TP.jpg'
+// import { Colors } from "react-native/Libraries/NewAppScreen";
+// import * as FileSystem from 'expo-file-system';
+import { writefile, deleteFile } from '../components/addContent/';
 
 
-const HomeTask = ({navigation}) => {
-  
-    const [enteredTodo, setEnteredTodo] = useState('Nouvelle Tache')
+function HomeTask () {
+  const [showInput, setShowInput] = useState(false);
 
-    const changeTextHandler = (pEnteredTodo) => {
-        setEnteredTodo(pEnteredTodo)
-    }
+  const handleShowInput = () => {
+      setShowInput(true);
+  };
 
-    const changeTodoHandler = () => {
-        console.log(enteredTodo)
-    }
-    const today = new Date();
+  const handleHideInput = () => {
+      setShowInput(false);
+  };
+
+  const [enteredTodo, setEnteredTodo] = useState('');
+
+  const addTodoHandler = async () => {
+      // ecrire dans un fichier
+      await writefile(enteredTodo)
+  };
+
+  const today = new Date();
 
     return (
         <View style={styles.containerFlex}>
-            <View style={styles.blueFlexItem}>
+            <View style={styles.topScreen}>
               <ImageBackground source={myImage} resizeMode="cover" style={styles.image}>
-              <Button icon="plus" mode='contained' style={styles.myButton} onPress={() => console.log('Pressed')}/>
-              
+              {/* <Button icon="plus" mode='contained' style={styles.myButton} onPress={handleShowInput}/> */}
+              {!showInput ? (
+                <Button icon="plus" mode='contained' style={styles.myButton} onPress={handleShowInput}/>
+                ): (
+                  <View>
+                    <TextInput
+                      style={styles.input}
+                      value={enteredTodo} 
+                      onChangeText={(value) => {setEnteredTodo(value)}} 
+                      placeholder="Saisir une nouvelle tache"
+                    />
+                    <View>
+                      <Button icon="plus" mode='contained' style={styles.myButton} onPress={addTodoHandler}/>
+                      <Button icon="eye" mode='contained' style={styles.myButton} onPress={handleHideInput}/>
+                    </View>
+                  </View>
+                )}
               <View style={styles.textContainer}>
                 <Text style={styles.myText}>{today.getDate()}/{today.getMonth()}</Text>
-                
                 <Text style={styles.myText}>My Day</Text>
               </View>
 
             </ImageBackground>
             </View>
 
-            <View style={styles.greenFlexItem}>
+            <View style={styles.topScreen}>
                 {/* <Text>{enteredTodso}</Text>
                 <TextInput
                     placeholder='Entrer une nouvelle Tache'
@@ -68,9 +91,8 @@ const styles = StyleSheet.create({
     containerFlex: {
       flex: 2,
     },
-    blueFlexItem: {
+    topScreen: {
       flex: 5,
-      
     },
     myText:{
       fontSize:35,
@@ -84,9 +106,9 @@ const styles = StyleSheet.create({
       verticalAlign:'bottom',
       flexDirection:'column-reverse'
     },
-    greenFlexItem: {
+    bottomScreen: {
       flex: 5,
-      justifyContent: 'flex-end',
+      justifyContent: 'center',
       alignItems: 'center',
     },
     // yellowFlexItem: {
@@ -103,6 +125,23 @@ const styles = StyleSheet.create({
     image: {
       flex: 1,
       width: '100%',
-    },  
+    },
+    input: {
+      marginTop: 10,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor:'#87CEFA',
+      width: '45%',
+    },
+    box: {
+      backgroundColor: '#87CEFA',
+      width: '100%',
+      borderRadius: 10,
+      padding: 20,
+      margin: 10,
+    },
+    taskText: {
+      color: 'black',
+    },
   });
   
